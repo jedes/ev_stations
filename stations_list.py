@@ -1,11 +1,13 @@
+# curl -d '{ "FilteringOptions": {"AvailableStationsOnly": "False", "FastDCStationsOnly": "False", "ShowOtherNetworkStations": "True" } }' -X POST -H "Content-Type: application/json; charset=utf-8" https://account.flo.ca/api/network/markers
+
 import requests
-import json
+import pickle
 from collections import namedtuple
 
 MapPerspective = namedtuple('MapPerspective',
                             ['zoom', 'south', 'west', 'north', 'east'])
 
-with open('stations_list.json', 'w') as outfile:
+with open('stations_list.dat', 'wb') as outfile:
 
     def recurseMap(mp):
         latSpan = abs(mp.north - mp.south) / 2
@@ -47,6 +49,6 @@ with open('stations_list.json', 'w') as outfile:
             recurseMap(mp)
         else:
             for station in r.json():
-                json.dump(station, outfile, indent=4)
+                pickle.dump(station, outfile)
 
     processZoomLevel(MapPerspective(5, 39, -97, 59, -47))
