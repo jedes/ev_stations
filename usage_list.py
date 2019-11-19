@@ -23,21 +23,3 @@ with open('stations_list.dat', 'rb') as infile:
         for port in stationinfo['ports']:
             print(port + ": " + stationinfo['ports'][port]['State'])
 
-
-#    while True:
-#        try:
-#            stations = pickle.load(infile)
-#            print(stations)
-#
-#        except EOFError:
-#            break
-
-#r = requests.post('https://account.flo.ca/api/network/stations',
-#     headers={'Content-Type': 'application/json; charset=utf-8',
-#              'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0'},
-#     json={})
-#
-#if r.status_code != 200:
-#    raise -1
-#
-#        json.dump(station, outfile, indent=4)
